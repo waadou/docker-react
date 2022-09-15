@@ -16,4 +16,5 @@ FROM nginx
 
 # Exposing port, that will be mapped automatically by ElasticBeanStalk
 EXPOSE 80  
+
 COPY --from=builder /app/build /usr/share/nginx/html

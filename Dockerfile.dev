@@ -1,6 +1,4 @@
-FROM node:14-alpine
-
-EXPOSE 80
+FROM node:14-alpine AS builder
 
 WORKDIR /app
 
@@ -11,4 +9,12 @@ RUN npm install
 
 COPY . .
 
-CMD [ "npm","run", "start" ]
+CMD [ "npm","run", "build" ]
+# <----- We are interesting in the folder '/app/build' at the end of this step
+
+FROM nginx
+
+# Exposing port, that will be mapped automatically by ElasticBeanStalk
+EXPOSE 80  
+
+COPY --from=builder /app/build /usr/share/nginx/html
