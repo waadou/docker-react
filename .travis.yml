@@ -6,4 +6,12 @@ before_install:
     - docker build -t alassani/docker-react -f Dockerfile.dev .
 
 script:
-    - docker run alassani/docker-react npm run test -- --coverage
+    - docker run -e CI=true alassani/docker-react npm run test -- --coverage
+
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-1"
+    app: "docker-react"
+    env: "Dockerreact-env"
+    bucket_name: "elasticbeanstalk-us-east-1-063824834627"
+    bucket_path: "docker-react"
