@@ -13,7 +13,7 @@ COPY . .
 RUN npm run build
 # <----- We are interesting in the folder '/app/build' at the end of this step
 
-FROM nginx
+FROM nginx:1.14-alpine
 
 # Exposing port, that will be mapped automatically by ElasticBeanStalk
 EXPOSE 80  
