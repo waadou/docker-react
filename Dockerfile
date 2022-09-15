@@ -13,5 +13,7 @@ CMD [ "npm","run", "build" ]
 # <----- We are interesting in the folder '/app/build' at the end of this step
 
 FROM nginx
-EXPOSE 80
+
+# Exposing port, that will be mapped automatically by ElasticBeanStalk
+EXPOSE 80  
 COPY --from=builder /app/build /usr/share/nginx/html
