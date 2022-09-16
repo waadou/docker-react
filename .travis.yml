@@ -3,10 +3,10 @@ services:
     - docker
 
 before_install:
-    - docker build -t alassani/docker-react -f Dockerfile.dev .
+    - docker build -t alassani/docker-react -f Dockerfile .
 
 script:
-    - docker run -e CI=true alassani/docker-react npm run test -- --coverage
+    - docker run alassani/docker-react npm run test -- --coverage
 
 deploy:
     provider: elasticbeanstalk
